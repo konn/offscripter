@@ -1,4 +1,4 @@
-{-# LANGUAGE GADTs, LambdaCase, RecordWildCards #-}
+{-# LANGUAGE GADTs, LambdaCase, OverloadedStrings, RecordWildCards #-}
 module Main where
 import           Data.String
 import           Language.ONScripter.Off
@@ -9,8 +9,8 @@ data Option = Yes | No | Amb
             deriving (Eq, Read, Show, Enum, Bounded)
 
 
-a :: Off ()
-a = do
+simpleScript :: Off ()
+simpleScript = do
   n <- newFlag
   selflag n [(Yes, "うん"), (No, "ううん")]
   switch n $ \case
@@ -22,5 +22,5 @@ a = do
   click
   "うっそー！"
   newpage
-  "ちゃんちゃん"
+  "Finally, ちゃんちゃん"
   click

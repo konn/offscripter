@@ -1,0 +1,218 @@
+
+./.stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/autogen/Paths_offscripter.hs,972
+module Paths_offscripter Paths_offscripter0,1
+catchIO catchIO11,12
+catchIO catchIO12,13
+version version14,15
+version version15,16
+bindir, libdir, datadir, libexecdir, sysconfdir sysconfdir16,17
+bindir, libdir, datadir, libexecdir,libexecdir16,17
+bindir, libdir, datadir,datadir16,17
+bindir, libdir,libdir16,17
+bindir,bindir16,17
+bindir bindir18,19
+libdir libdir19,20
+datadir datadir20,21
+libexecdir libexecdir21,22
+sysconfdir sysconfdir22,23
+getBinDir, getLibDir, getDataDir, getLibexecDir, getSysconfDir getSysconfDir24,25
+getBinDir, getLibDir, getDataDir, getLibexecDir,getLibexecDir24,25
+getBinDir, getLibDir, getDataDir,getDataDir24,25
+getBinDir, getLibDir,getLibDir24,25
+getBinDir,getBinDir24,25
+getBinDir getBinDir25,26
+getLibDir getLibDir26,27
+getDataDir getDataDir27,28
+getLibexecDir getLibexecDir28,29
+getSysconfDir getSysconfDir29,30
+getDataFileName getDataFileName31,32
+getDataFileName getDataFileName32,33
+
+./examples/simple.hs,163
+module Main Main1,2
+data Option Option7,8
+data Option = Yes Yes7,8
+data Option = Yes | No No7,8
+data Option = Yes | No | AmbAmb7,8
+a a11,12
+a a12,13
+
+./Setup.hs,15
+main main1,2
+
+./src/Language/ONScripter/Off/Internal.hs,78
+module Language.ONScripter.Off.Internal Language.ONScripter.Off.Internal1,2
+
+./src/Language/ONScripter/Off/Prelude.hs,87
+module Language.ONScripter.Off.Prelude Language.ONScripter.Off.Prelude3,4
+(.(10,11
+
+./src/Language/ONScripter/Off.hs,4488
+module Language.ONScripter.Off Language.ONScripter.Off5,6
+type Duration Duration25,26
+newtype Var Var28,29
+newtype Var = Var Var28,29
+newtype Var = Var { varId varId28,29
+newtype Flag Flag34,35
+newtype Flag a = Flag Flag34,35
+newtype Flag a = Flag { flagId flagId34,35
+class Printable Printable39,40
+class Printable Printable39,40
+  pretty pretty40,41
+type Subroutine Subroutine42,43
+data BoundingBox BoundingBox44,45
+data BoundingBox = BoundingBox BoundingBox44,45
+data BoundingBox = BoundingBox { bbx bbx44,45
+                               , bby bby45,46
+                               , bbWidth bbWidth46,47
+                               , bbHeight bbHeight47,48
+                               , bbStartX bbStartX48,49
+                               , bbStartY bbStartY49,50
+data Inst Inst53,54
+  Puttext Puttext54,55
+  TextSpeed TextSpeed55,56
+  Click Click56,57
+  Newpage Newpage57,58
+  NewFlag NewFlag58,59
+  GetFlag GetFlag59,60
+  SetFlag SetFlag60,61
+  NewVar NewVar61,62
+  GetVar GetVar62,63
+  SetVar SetVar63,64
+  If If64,65
+  NotIf NotIf65,66
+  Ifte Ifte66,67
+  Gosub Gosub67,68
+  Selnum Selnum68,69
+  Skip Skip69,70
+  Seq Seq70,71
+  Rnd Rnd71,72
+  Rnd2 Rnd272,73
+  Sub Sub73,74
+  Add Add74,75
+  Inc Inc75,76
+  Dec Dec76,77
+  Mul Mul77,78
+  Div Div78,79
+  Mod Mod79,80
+  Cmp Cmp80,81
+  RMode RMode81,82
+  ResetTimer ResetTimer82,83
+  WaitTimer WaitTimer83,84
+  GetTimer GetTimer84,85
+  Reset Reset85,86
+  DefineReset DefineReset86,87
+  Delay Delay87,88
+  Wait Wait88,89
+  LookBackFlush LookBackFlush89,90
+  InputStr InputStr90,91
+  ClickPos ClickPos93,94
+  BtnDef BtnDef94,95
+  Locate Locate95,96
+data Expr Expr98,99
+  Number Number99,100
+  String String100,101
+  DerefV DerefV101,102
+  DerefF DerefF102,103
+  RawFlag RawFlag103,104
+  FCheck FCheck104,105
+  (:<) )105,106
+  (:>) )106,107
+data Expr a wherewhere98,99
+setFlag setFlag112,113
+setFlag setFlag113,114
+newFlag newFlag115,116
+newFlag newFlag116,117
+deflag deflag118,119
+deflag deflag119,120
+ifte ifte121,122
+ifte ifte122,123
+when_ when_124,125
+when_ when_125,126
+whenAtEnd whenAtEnd127,128
+whenAtEnd whenAtEnd128,129
+unless_ unless_131,132
+unless_ unless_132,133
+selnum selnum134,135
+selnum selnum135,136
+candidates candidates137,138
+candidates candidates138,139
+selflag selflag140,141
+selflag selflag141,142
+click click146,147
+click click147,148
+skip skip149,150
+skip skip150,151
+newpage newpage152,153
+newpage newpage153,154
+type Off Off155,156
+type OffT OffT156,157
+instance instance158,159
+someFunc someFunc161,162
+someFunc someFunc162,163
+interpret interpret164,165
+interpret interpret168,169
+class    (Eq a, Show a, Enum a, Bounded a) => Flaggable Flaggable173,174
+tshow tshow176,177
+tshow tshow177,178
+procQuote procQuote207,208
+procQuote procQuote208,209
+escapeStr escapeStr210,211
+escapeStr escapeStr211,212
+zenkakize zenkakize213,214
+zenkakize zenkakize214,215
+data OffState OffState225,226
+data OffState = OffState OffState225,226
+data OffState = OffState { _flags _flags225,226
+                         , _vars _vars226,227
+                         , _subroutines _subroutines227,228
+defaultState defaultState230,231
+defaultState defaultState231,232
+switch switch239,240
+switch switch240,241
+type Compiler Compiler249,250
+type Compiled Compiled250,251
+addDef addDef252,253
+addDef addDef253,254
+cmd_ cmd_255,256
+cmd_ cmd_256,257
+cmd cmd258,259
+cmd cmd259,260
+sanitize sanitize262,263
+sanitize sanitize263,264
+defSub defSub267,268
+defSub defSub269,270
+attain attain277,278
+attain attain279,280
+free free284,285
+free free286,287
+with with288,289
+with with290,291
+allocVar allocVar296,297
+allocVar allocVar297,298
+freeVar freeVar299,300
+freeVar freeVar300,301
+withVar withVar302,303
+withVar withVar304,305
+allocFlag allocFlag306,307
+allocFlag allocFlag307,308
+freeFlag freeFlag309,310
+freeFlag freeFlag310,311
+withFlag withFlag312,313
+withFlag withFlag314,315
+skim skim316,317
+skim skim318,319
+compileM compileM323,324
+compileM compileM324,325
+compile compile390,391
+compile compile391,392
+formatBlock formatBlock393,394
+formatBlock formatBlock394,395
+formatScript formatScript396,397
+formatScript formatScript397,398
+writeScript writeScript404,405
+writeScript writeScript405,406
+
+./test/Spec.hs,30
+main main0,1
+main main1,2
