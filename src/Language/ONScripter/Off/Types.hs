@@ -1,8 +1,9 @@
-{-# LANGUAGE FlexibleContexts, FlexibleInstances, GADTs           #-}
-{-# LANGUAGE MultiParamTypeClasses, OverloadedStrings, RankNTypes #-}
-{-# LANGUAGE TemplateHaskell, TypeFamilies, UndecidableInstances  #-}
+{-# LANGUAGE DataKinds, FlexibleContexts, FlexibleInstances, GADTs #-}
+{-# LANGUAGE MultiParamTypeClasses, OverloadedStrings, RankNTypes  #-}
+{-# LANGUAGE TemplateHaskell, TypeFamilies, TypeOperators          #-}
+{-# LANGUAGE UndecidableInstances                                  #-}
 module Language.ONScripter.Off.Types
-       (Flaggable,
+       (Flaggable, type OtherType, type UnexpectedType,
         Var(..), varId, unsafeVar, _Var,
         Flag(..), flagId, unsafeFlag, _Flag,
         Subroutine(..), label, unsafeSubroutine, _Subroutine,
@@ -24,8 +25,20 @@ import           Data.Text                 (Text)
 import qualified Data.Text                 as T
 import           Data.Typeable
 
-class    (Eq a, Show a, Enum a, Bounded a) => Flaggable a
-instance (Eq a, Show a, Enum a, Bounded a) => Flaggable a
+class    (Eq a, Show a, Enum a, Bounded a, a !~ Text) => Flaggable a
+instance (Eq a, Show a, Enum a, Bounded a, a !~ Text) => Flaggable a
+
+data Matching a = OtherType | UnexpectedType a
+
+type OtherType = 'OtherType
+type UnexpectedType = 'UnexpectedType
+
+type family Rejecting a b where
+  Rejecting a a = 'UnexpectedType a
+  Rejecting a b = 'OtherType
+
+class    (Rejecting a b ~ OtherType) => a !~ b
+instance (Rejecting a b ~ OtherType) => a !~ b
 
 -- | Variables for string values
 newtype Var = Var { _varId :: Int }
@@ -120,10 +133,9 @@ type Off  = Program Inst
 type OffT = ProgramT Inst
 
 data Expr a where
-  Number  :: Int  -> Expr Int
   String  :: Text     -> Expr Text
   DerefV  :: Var      -> Expr Text
-  DerefF  :: Flag a -> Expr a
+  DerefF  :: (a !~ Text) => Flag a -> Expr a
   RawFlag :: Flaggable a => a -> Expr a
   FCheck  :: FilePath -> Expr Bool
   (:<)    :: Expr Int -> Expr Int -> Expr Bool
@@ -134,7 +146,7 @@ data Expr a where
   (:!=)   :: Expr Int -> Expr Int -> Expr Bool
 
 instance (a ~ Int) => Num (Expr a) where
-  fromInteger = Number . fromInteger
+  fromInteger = RawFlag . fromInteger
   (+) = error "No arithmetic expression supported for Expr"
   (-) = error "No arithmetic expression supported for Expr"
   (*) = error "No arithmetic expression supported for Expr"
@@ -157,7 +169,6 @@ instance Printable Subroutine where
   pretty (Subroutine s) = "*" <> s
 
 instance Printable (Expr a) where
-  pretty (Number i)        = tshow i
   pretty (String s)        = "\"" <> escapeStr s <> "\""
   pretty (DerefV v)        = pretty v
   pretty (DerefF f)        = pretty f

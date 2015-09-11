@@ -12,7 +12,9 @@ module Language.ONScripter.Off.Syntax
         module Language.ONScripter.Off.Syntax.Combinators,
         setFlag, newFlag, decastFlag, when_,
         whenFinally, unless_, candidates, seldo,
-        puts, selflag, defSubr, interpret, switch
+        puts, selflag, defSubr, interpret, switch,
+        -- * Types to indicate type-level errors
+        OtherType, UnexpectedType
        ) where
 import Language.ONScripter.Off.Syntax.Combinators
 import Language.ONScripter.Off.Types
@@ -69,7 +71,7 @@ switch f body = mapM_ singleton conds
   where
     cases = candidates Nothing
     len   = fromIntegral $ length cases
-    conds = [If (DerefF (decastFlag f) := Number (fromEnum v))
-                 (body v) (Just $ when (s > 0) (skip $ Number s))
+    conds = [If (DerefF (decastFlag f) := RawFlag (fromEnum v))
+                 (body v) (Just $ when (s > 0) (skip $ RawFlag s))
             | v <- cases
             | s <- [len,len-1..]]
